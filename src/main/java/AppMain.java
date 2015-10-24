@@ -1,3 +1,7 @@
+import domain.AnimalVoteService;
+import infrastructure.AnimalDao;
+import model.AnimalType;
+
 import java.util.Scanner;
 
 

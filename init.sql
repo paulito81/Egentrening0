@@ -1,0 +1,9 @@
+CREATE TABLE nasjonaldyr (art VARCHAR2(15) PRIMARY
+KEY, stemmer NUMBER(6));
+INSERT INTO nasjonaldyr VALUES('GREVLING',14);
+INSERT INTO nasjonaldyr VALUES('LEMMEN',23);
+INSERT INTO nasjonaldyr VALUES('HARE',7);
+INSERT INTO nasjonaldyr VALUES('ELG',8);
+INSERT INTO nasjonaldyr VALUES('SILD',2);
+INSERT INTO nasjonaldyr VALUES('MARKMUS',24);
+COMMIT;

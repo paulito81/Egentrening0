@@ -1,3 +1,7 @@
+package domain;
+
+import model.AnimalType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +28,11 @@ public class AnimalVoteService {
     }
 
     public void getListOfAnimals(List<AnimalType> animalTypes) {
-
+        int i =0;
         for(AnimalType animals : animalTypes){
-            System.out.println(animals.index + ": \t\t" + animals.name() + " " );
+            System.out.println(animalTypes.get(i) + ": \t\t" + animals.name() + " " );
+            i++;
+
         }
 
     }
