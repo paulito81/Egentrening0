@@ -3,6 +3,7 @@ import infrastructure.AnimalDao;
 import model.AnimalType;
 
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 
 /**
@@ -11,6 +12,7 @@ import java.util.Scanner;
 public class AppMain {
 
     private AnimalDao animalDao;
+    private Logger logger = Logger.getLogger(AppMain.class.getName());
 
     public static void main(String[] args) {
 
@@ -25,10 +27,10 @@ public class AppMain {
 
     }
     private void preMenu(){
-        System.out.println("\nVelkommen til dyreavstemning, hvilket dyr er Norges nasjonaldyr?");
-        System.out.println("----------------");
-        System.out.println("Art.nr\tDyr");
-        System.out.println("----------------");
+       logger.info("\nVelkommen til dyreavstemning, hvilket dyr er Norges nasjonaldyr?");
+        logger.info("----------------");
+        logger.info("Art.nr\tDyr");
+        logger.info("----------------");
     }
 
     // Choose a animal from the list.
@@ -37,10 +39,10 @@ public class AppMain {
         int stemmer = 0;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\n(Velg et av alternativene over: '1..6') ");
-        System.out.println("(Trykk 0 -  for å avslutte");
-        System.out.println("---------------------------------------");
-        System.out.println("->>:");
+        logger.info("\n(Velg et av alternativene over: '1..6') ");
+        logger.info("(Trykk 0 -  for å avslutte");
+        logger.info("---------------------------------------");
+        logger.info("->>:");
 
         choose = scanner.nextInt();
         while (true) {
@@ -48,7 +50,7 @@ public class AppMain {
                 switch (choose) {
 
                     case 0:
-                        System.out.println("Program is quiting.\nGood bye!");
+                        logger.info("Program is quiting.\nGood bye!");
                         System.exit(0);
                         break;
                     case 1:

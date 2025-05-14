@@ -1,5 +1,6 @@
 package infrastructure;
 
+
 import model.AnimalType;
 
 import javax.annotation.PreDestroy;
@@ -77,44 +78,24 @@ public class AnimalDao implements Animal {
         }
         return null;
     }
-}
 
-
-
-/*
-    public void updateSQL( AnimalType animal, int vote){
+    public void updateSQL(AnimalType animal, int vote) {
         String sqlUpdate = "UPDATE nasjonaldyr SET stemmer = ? WHERE art = ?";
 
-        try( PreparedStatement preparedStatement = connection.prepareStatement(sqlUpdate)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlUpdate)) {
             preparedStatement.setInt(1, vote);
             preparedStatement.setString(2, animal.name());
 
-            int rows =  preparedStatement.executeUpdate();
+            int rows = preparedStatement.executeUpdate();
             System.out.println("Updated animal " + animal.name() + "\tHas now : (" + vote + ") votes!");
-            if( rows != 1){
-                throw new IllegalStateException("Wrong number of rows updated: " + rows +"\nStemmer: "
-                        + vote + "\nArt:" + animal.name() );
+            if (rows != 1) {
+                throw new IllegalStateException("Wrong number of rows updated: " + rows + "\nStemmer: "
+                        + vote + "\nArt:" + animal.name());
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
-
-    public void getAllAnimals( ){        // liste av dyr som skal hentes
-
-        List<String> animalList = new ArrayList<>();
-        String sqlListe = "SELECT art FROM nasjonaldyr";
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlListe)) {
-
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                 animalList.add(rs.getString(1));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-*/
+}
 
