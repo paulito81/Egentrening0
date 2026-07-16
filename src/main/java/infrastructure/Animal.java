@@ -9,5 +9,4 @@ public interface Animal {
 
     boolean voteForAnAnimal(int vote, Animal animal);
     List<Animal> getAllAnimals();
-
 }

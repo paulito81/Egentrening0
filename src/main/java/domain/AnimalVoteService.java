@@ -1,40 +1,40 @@
 package domain;
 
 import model.AnimalType;
+import repository.AnimalRepository;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Paul on 10.09.15.
  */
+
 public class AnimalVoteService {
-    List<AnimalType> listOfAnimals;
+    private final AnimalRepository animalRepository;
+    private final Map<AnimalType, Integer> stemmerPerDyr = new EnumMap<>(AnimalType.class);
 
-
-    public AnimalVoteService(){
-        listOfAnimals = new ArrayList<>();
-        populateAnimalList();
-        getListOfAnimals(listOfAnimals);
-
-    }
-    public void populateAnimalList(){
-
-        listOfAnimals.add(AnimalType.GREVLING);
-        listOfAnimals.add(AnimalType.LEMMEN);
-        listOfAnimals.add(AnimalType.HARE);
-        listOfAnimals.add(AnimalType.SILD);
-        listOfAnimals.add(AnimalType.MARKMUS);
+    public AnimalVoteService(AnimalRepository animalRepository) {
+        this.animalRepository = animalRepository;
+        prePopulateAnimalsList();
     }
 
-    public void getListOfAnimals(List<AnimalType> animalTypes) {
-        int i =0;
-        for(AnimalType animals : animalTypes){
-            System.out.println(animalTypes.get(i) + ": \t\t" + animals.name() + " " );
-            i++;
-
-        }
-
+    private void prePopulateAnimalsList() {
+        stemmerPerDyr.put(AnimalType.GREVLING, 0);
+        stemmerPerDyr.put(AnimalType.LEMMEN, 0);
+        stemmerPerDyr.put(AnimalType.HARE, 0);
+        stemmerPerDyr.put(AnimalType.ELG, 0);
+        stemmerPerDyr.put(AnimalType.SILD, 0);
+        stemmerPerDyr.put(AnimalType.MARKMUS, 0);
     }
 
+    public void registrerStemme(AnimalType animalType) {
+        int dagensStemmer = stemmerPerDyr.getOrDefault(animalType, 0);
+        int nyeStemmer = dagensStemmer + 1;
+        stemmerPerDyr.put(animalType, nyeStemmer);
+        animalRepository.updateSQL(animalType, nyeStemmer);
+    }
+
+    public int getStemmerFor(AnimalType animalType) {
+        return stemmerPerDyr.getOrDefault(animalType, 0);
+    }
 }
